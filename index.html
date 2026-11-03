@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eaf4fb">
+<title>北海道六天五夜｜Snow Trip 2027</title>
+<style>
+:root{
+  --ink:#20384b;--muted:#718697;--blue:#6c9fbe;--blue2:#dcecf6;
+  --ice:#f3f8fc;--white:#fff;--line:#e1ebf2;--navy:#24445b;
+  --pink:#e8b9c4;--gold:#d6b879;--shadow:0 12px 32px rgba(40,75,100,.09);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#eaf4fb 0,#f6f9fc 340px,#f7f9fb 100%);color:var(--ink);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;line-height:1.65}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+a{color:#397da5;text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1120px;margin:auto;padding:22px}
+.hero{position:relative;overflow:hidden;border-radius:30px;min-height:290px;padding:34px;color:#fff;background:linear-gradient(115deg,rgba(23,57,81,.83),rgba(53,104,133,.42)),url('https://images.unsplash.com/photo- sled?auto=format&fit=crop&w=1800&q=85');background-image:linear-gradient(115deg,rgba(23,57,81,.82),rgba(53,104,133,.36)),url('https://images.unsplash.com/photo-1517299321609-52687d1bc55a?auto=format&fit=crop&w=1800&q=85');background-size:cover;background-position:center 48%;box-shadow:var(--shadow)}
+.hero:after{content:"❄";position:absolute;right:6%;top:10px;font-size:130px;color:rgba(255,255,255,.22);pointer-events:none}
+.kicker{letter-spacing:.22em;font-size:11px;font-weight:800;opacity:.9}
+h1{font-size:clamp(34px,6vw,58px);line-height:1.1;margin:14px 0 10px;letter-spacing:.02em}
+.hero p{max-width:600px;margin:0;color:#eaf5fb}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid rgba(255,255,255,.36);border-radius:99px;background:rgba(255,255,255,.13);font-size:12px}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.stay{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin:18px 0}
+.stay-card{padding:22px}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:800}
+h2{font-size:23px;margin:5px 0 12px}
+h3{font-size:17px;margin:0 0 7px}
+.small{font-size:13px;color:var(--muted)}
+.stay-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.btn{border:0;border-radius:12px;padding:10px 14px;background:var(--navy);color:white;font-weight:700;font-size:13px}
+.btn.secondary{background:var(--blue2);color:var(--navy)}
+.btn.ghost{background:#f4f8fb;color:var(--navy);border:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.stat{background:#f4f8fb;border-radius:14px;padding:12px;text-align:center}
+.stat b{display:block;font-size:21px;color:var(--navy)}
+.stat span{font-size:11px;color:var(--muted)}
+.quick{padding:20px}
+.quick-list{display:grid;gap:9px}
+.quick-item{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.quick-item:last-child{border:0}
+.tabs{display:flex;gap:8px;overflow:auto;padding:4px 2px 12px;margin:12px 0;scrollbar-width:thin}
+.tab{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--muted);padding:10px 15px;border-radius:99px;font-weight:750;font-size:13px}
+.tab.active{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 5px 14px rgba(36,68,91,.18)}
+.day-head{padding:23px 25px;margin-bottom:15px;background:linear-gradient(120deg,#fff,#edf6fb)}
+.day-title-row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.day-number{font-size:12px;letter-spacing:.14em;color:var(--blue);font-weight:900}
+.day-head h2{font-size:27px;margin:3px 0}
+.day-head p{margin:0;color:var(--muted);font-size:13px}
+.day-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.tag{font-size:11px;padding:5px 9px;border-radius:99px;background:#edf5fa;color:#426b85}
+.itinerary{display:grid;grid-template-columns:1fr 310px;gap:15px}
+.timeline{padding:22px}
+.stop{display:grid;grid-template-columns:74px 20px 1fr;gap:10px;padding:0 0 22px;position:relative}
+.stop:last-child{padding-bottom:0}
+.time{font-size:12px;font-weight:800;color:#5683a0;padding-top:2px}
+.rail{position:relative;display:flex;justify-content:center}
+.rail:before{content:"";position:absolute;top:8px;bottom:-22px;width:2px;background:#dceaf2}
+.stop:last-child .rail:before{display:none}
+.dot{z-index:1;width:11px;height:11px;border-radius:50%;background:#7eabc6;border:3px solid #e7f2f8;margin-top:4px}
+.stop-content{padding:0 0 2px}
+.stop-content h3{margin:0 0 3px}
+.stop-content p{margin:0;color:var(--muted);font-size:13px}
+.stop-content .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.text-link{font-size:12px;font-weight:750}
+.checkline{display:flex;align-items:flex-start;gap:8px;margin-top:8px;font-size:12px;color:#557184}
+.checkline input{accent-color:#5b91b2;margin-top:4px}
+.side{display:grid;gap:15px;align-content:start}
+.side-card{padding:18px}
+.side-card ul{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+.side-card li{margin:5px 0}
+.note{background:#fff9ed;border:1px solid #f1e5c8;color:#78633b;border-radius:14px;padding:12px;font-size:12px;margin-top:12px}
+.route{background:#f3f8fb;border-radius:14px;padding:12px;margin-top:10px;font-size:12px}
+.route b{display:block;color:var(--navy);margin-bottom:4px}
+.section{margin:24px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:12px}
+.section-head p{margin:0;color:var(--muted);font-size:13px}
+.tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.tool-card{padding:20px}
+.checklist{display:grid;gap:9px;margin-top:12px}
+.checkrow{display:flex;align-items:flex-start;gap:9px;font-size:13px}
+.checkrow input{accent-color:#5b91b2;margin-top:4px}
+.progress{height:7px;background:#edf2f6;border-radius:99px;overflow:hidden;margin-top:12px}
+.progress>span{display:block;height:100%;background:linear-gradient(90deg,#75a9c7,#b5d3e4);width:0;transition:width .2s}
+.budget-row{display:grid;grid-template-columns:1fr 120px;gap:8px;margin:8px 0}
+.budget-row input{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px;color:var(--ink);background:#fbfdff}
+.total{font-size:25px;font-weight:900;color:var(--navy);margin-top:10px}
+.footer{text-align:center;padding:25px 8px 40px;color:var(--muted);font-size:12px}
+.hidden{display:none!important}
+@media(max-width:800px){.stay,.itinerary,.tools-grid{grid-template-columns:1fr}.hero{min-height:260px;padding:25px}.wrap{padding:14px}.side{grid-template-columns:1fr 1fr}.side-card:last-child{grid-column:1/-1}}
+@media(max-width:520px){.side{grid-template-columns:1fr}.day-title-row{display:block}.day-head{padding:19px}.timeline{padding:17px}.stop{grid-template-columns:58px 17px 1fr;gap:7px}.hero:after{font-size:85px;right:4%}.stats{gap:5px}.stat{padding:9px 4px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="kicker">HOKKAIDO · WINTER ESCAPE · 2027</div>
+  <h1>北海道<br>六天五夜</h1>
+  <p>把雪景、溫泉感的暖食、可愛街景和夜晚燈光，收進一趟慢慢玩的冬日旅行。</p>
+  <div class="hero-meta">
+    <span class="pill">❄ 札幌 × 小樽</span><span class="pill">👥 6 位旅伴</span><span class="pill">🚆 大眾交通自由行</span>
+  </div>
+</header>
+
+<section class="stay">
+  <div class="panel stay-card">
+    <div class="eyebrow">YOUR HOME IN SAPPORO</div>
+    <h2>Minn 札幌大通 西14</h2>
+    <div class="small">北海道札幌市中央區南1條西14丁目 · 〒060-0061</div>
+    <div class="stay-actions">
+      <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Minn+Sapporo+Odori+Nishi+14">Google 地圖導航 ↗</a>
+      <button class="btn secondary" onclick="copyText('北海道札幌市中央區南1條西14丁目 Minn 札幌大通 西14')">複製住宿地址</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>6 天</b><span>旅行天數</span></div>
+      <div class="stat"><b>5 晚</b><span>住宿晚數</span></div>
+      <div class="stat"><b>6 人</b><span>旅伴人數</span></div>
+    </div>
+  </div>
+  <div class="panel quick">
+    <div class="eyebrow">TRIP AT A GLANCE</div><h2>行程快速看</h2>
+    <div class="quick-list">
+      <div class="quick-item"><span>Day 1　札幌市區</span><b>抵達・狸小路</b></div>
+      <div class="quick-item"><span>Day 2　神宮・大倉山</span><b>螃蟹吃到飽</b></div>
+      <div class="quick-item"><span>Day 3　小樽</span><b>商店街・運河</b></div>
+      <div class="quick-item"><span>Day 4　玩雪・夜景</span><b>羊之丘・藻岩山</b></div>
+      <div class="quick-item"><span>Day 5　札幌慢遊</span><b>北大・購物</b></div>
+      <div class="quick-item"><span>Day 6　返家</span><b>新千歲機場</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-head"><div><div class="eyebrow">DAILY ITINERARY</div><h2>每天去哪裡？</h2></div><p>點選日期切換行程</p></div>
+<nav class="tabs" id="dayTabs" aria-label="每日行程">
+  <button class="tab active" data-day="0">Day 1</button><button class="tab" data-day="1">Day 2</button><button class="tab" data-day="2">Day 3</button><button class="tab" data-day="3">Day 4</button><button class="tab" data-day="4">Day 5</button><button class="tab" data-day="5">Day 6</button>
+</nav>
+<div id="dayPanel"></div>
+
+<section class="section">
+ <div class="section-head"><div><div class="eyebrow">TRAVEL TOOLKIT</div><h2>旅行小幫手</h2></div><p>勾選和輸入的內容會保存在這台裝置的瀏覽器</p></div>
+ <div class="tools-grid">
+  <div class="panel tool-card">
+   <h3>🧤 冬季行李清單</h3><div class="small">北海道 1 月很冷，防風、防水和保暖都要顧到。</div>
+   <div class="checklist" id="packingList">
+    <label class="checkrow"><input type="checkbox"> 羽絨外套／防風外套</label>
+    <label class="checkrow"><input type="checkbox"> 發熱衣、保暖中層</label>
+    <label class="checkrow"><input type="checkbox"> 防水雪靴／止滑鞋底</label>
+    <label class="checkrow"><input type="checkbox"> 防水手套、毛帽、圍巾</label>
+    <label class="checkrow"><input type="checkbox"> 厚襪、暖暖包</label>
+    <label class="checkrow"><input type="checkbox"> 雪地止滑冰爪（視鞋底需要）</label>
+    <label class="checkrow"><input type="checkbox"> 護唇膏、護手霜、保濕用品</label>
+    <label class="checkrow"><input type="checkbox"> 護照、機票、住宿資料</label>
+    <label class="checkrow"><input type="checkbox"> Suica／交通 IC 卡、信用卡、現金</label>
+    <label class="checkrow"><input type="checkbox"> 行動電源、充電線、轉接頭</label>
+   </div>
+   <div class="progress"><span id="packingProgress"></span></div><div class="small" id="packingCount">0 / 10 已完成</div>
+  </div>
+  <div class="panel tool-card">
+   <h3>💴 旅費小計（每人）</h3><div class="small">可自行修改金額，幣別可用新台幣或日圓，請自行統一。</div>
+   <div class="budget-row"><label class="small" for="food">餐飲預算</label><input id="food" type="number" min="0" value="12000"></div>
+   <div class="budget-row"><label class="small" for="transport">交通預算</label><input id="transport" type="number" min="0" value="5000"></div>
+   <div class="budget-row"><label class="small" for="tickets">門票／體驗</label><input id="tickets" type="number" min="0" value="3000"></div>
+   <div class="budget-row"><label class="small" for="shopping">購物預算</label><input id="shopping" type="number" min="0" value="8000"></div>
+   <div class="small">每人預估合計</div><div class="total" id="budgetTotal">NT$ 28,000</div>
+   <div class="small">不含機票與住宿；可依實際預算調整。</div>
+  </div>
+  <div class="panel tool-card">
+   <h3>🚆 交通備忘</h3>
+   <ul class="small">
+    <li>新千歲機場搭 JR 到新札幌（Shin-Sapporo），再轉地下鐵東西線。</li>
+    <li>地下鐵新さっぽろ站搭往宮之澤方向，在西11丁目站下車。</li>
+    <li>札幌市區地下鐵、市電及部分巴士可使用 Suica 等交通 IC 卡；上車前確認該路線支援。</li>
+    <li>円山公園站有巴士總站；前往大倉山搭乘 くらまる号，班次與乘車處出發前再確認。</li>
+    <li>小樽站到運河可步行；堺町通與運河周邊適合慢慢走逛。</li>
+   </ul>
+   <div class="note">冬季班次、道路和纜車可能因積雪、強風或活動調整。這份行程是規劃稿，出發前請再次確認官方公告。</div>
+  </div>
+  <div class="panel tool-card">
+   <h3>📝 旅程備註</h3>
+   <div class="small">把航班時間、訂位編號以外的行程提醒記在這裡。</div>
+   <textarea id="memo" rows="6" style="width:100%;margin-top:10px;border:1px solid var(--line);border-radius:12px;padding:12px;resize:vertical" placeholder="例如：第二天螃蟹餐廳訂位時間、集合時間、回程航班時間……"></textarea>
+   <div class="small" id="memoStatus">自動儲存於本機瀏覽器</div>
+  </div>
+ </div>
+</section>
+<div class="footer">HOKKAIDO WINTER TRIP · 2027<br>祝你們一路順利、玩得暖暖又開心 ☃️</div>
+</div>
+
+<script>
+const days=[
+{title:"抵達札幌・市區散步",subtitle:"先入住、吃一碗熱呼呼的湯咖哩，再慢慢感受札幌。",tags:["抵達日","札幌市區","彈性休息"],stops:[
+["依航班","新千歲機場抵達","入境、領行李、補充交通 IC 卡或車票。"],
+["交通","機場 → 住宿","JR 快速 Airport 前往新札幌，再轉地下鐵東西線往宮之澤方向，西11丁目站下車，步行至住宿。", "https://www.google.com/maps/search/?api=1&query=New+Chitose+Airport+to+Minn+Sapporo+Odori+Nishi+14"],
+["入住","Minn 札幌大通 西14","寄放／放置行李，稍作休息。"],
+["午餐","SAMA Soup Curry","吃湯咖哩；實際分店與營業時間請依預訂或當日資訊確認。","https://www.google.com/maps/search/?api=1&query=Soup+Curry+SAMA+Sapporo"],
+["下午","大通公園","散步、拍雪景；戶外太冷就縮短停留。","https://www.google.com/maps/search/?api=1&query=Odori+Park+Sapporo"],
+["傍晚","狸小路商店街","逛藥妝、服飾、伴手禮。","https://www.google.com/maps/search/?api=1&query=Tanukikoji+Shopping+Street+Sapporo"],
+["備案","札幌地下街","太冷或下雪時改逛 Pole Town、Aurora Town。","https://www.google.com/maps/search/?api=1&query=Sapporo+Pole+Town+Aurora+Town"]
+],route:"機場 → JR 新札幌 → 地下鐵新さっぽろ → 西11丁目 → 住宿 → SAMA → 大通公園 → 狸小路",tips:["抵達日不要排太滿，先以入住和吃飯為主。","六人加大行李，若轉乘太累可考慮從札幌站搭計程車分車前往住宿。","JR 與地下鐵新札幌是不同系統，轉乘時跟著地下鐵／東西線指標。"]},
+{title:"北海道神宮・円山公園・大倉山",subtitle:"早上吃麥當勞，走訪神宮與公園，下午搭巴士看札幌全景。",tags:["神社雪景","大倉山","螃蟹晚餐"],stops:[
+["08:00","麥當勞早餐","可考慮中央區役所前店；出發前確認店鋪營業與早餐供應時間。","https://www.google.com/maps/search/?api=1&query=McDonalds+Sapporo+Chuo+Kuyakusho+Mae"],
+["09:00","前往円山公園站","從西11丁目搭東西線，往新さっぽろ方向，在円山公園站下車。"],
+["09:30","北海道神宮","參拜、欣賞鳥居和冬季參道。","https://www.google.com/maps/search/?api=1&query=Hokkaido+Jingu+Sapporo"],
+["10:30","円山公園","與神宮相鄰，步行散步、拍照。","https://www.google.com/maps/search/?api=1&query=Maruyama+Park+Sapporo"],
+["11:30","円山附近午餐","先選定餐廳並確認六人座位；保留用餐時間。"],
+["12:30","円山公園巴士總站","搭 くらまる号 前往大倉山跳台競技場；班次、月台以當日官方資訊為準。","https://www.google.com/maps/search/?api=1&query=Maruyama+Bus+Terminal+Sapporo"],
+["13:00","大倉山展望台","搭乘吊椅欣賞札幌景色；視天候及設施運行狀況調整。","https://www.google.com/maps/search/?api=1&query=Okurayama+Ski+Jump+Stadium+Sapporo"],
+["晚上","THE SAKURA BUFFET","螃蟹吃到飽晚餐；請事先確認店名、分店、營業日與訂位。"]
+],route:"住宿 → 西11丁目站 → 円山公園站 → 北海道神宮／円山公園 → 円山公園巴士總站 → くらまる号 → 大倉山 → 回札幌",tips:["北海道神宮與円山公園可步行串在一起。","前往大倉山搭 くらまる号；不要只憑舊時刻表，2027 年 1 月班次需重新確認。","大倉山纜車／吊椅可能因風雪、訓練或活動暫停。","晚餐建議六人提前訂位。"]},
+{title:"小樽一日遊・商店街與運河",subtitle:"取消水族館後，整天留給小樽散步、甜點、玻璃工藝和運河夜景。",tags:["JR 小樽","堺町通","運河夜景"],stops:[
+["早上","札幌 → 小樽","搭 JR 前往小樽站；車程依列車約 35–45 分鐘。","https://www.google.com/maps/search/?api=1&query=Otaru+Station"],
+["上午","CAFE' BAAL","安排咖啡／早午餐；請確認實際店址、營業時間及是否需候位。","https://www.google.com/maps/search/?api=1&query=CAFE+BAAL+Otaru"],
+["中午","堺町通商店街","慢慢逛北一硝子、六花亭、北菓樓等店家。","https://www.google.com/maps/search/?api=1&query=Sakaimachi+Street+Otaru"],
+["下午","小樽音樂盒堂・童話十字路口","逛音樂盒、拍照、吃甜點。","https://www.google.com/maps/search/?api=1&query=Otaru+Music+Box+Museum"],
+["傍晚","小樽運河","欣賞倉庫群與煤氣燈，拍攝冬季景色。","https://www.google.com/maps/search/?api=1&query=Otaru+Canal"],
+["晚上","回札幌・Ramhouse Kekere","回札幌後吃成吉思汗烤羊肉；六人建議先訂位。","https://www.google.com/maps/search/?api=1&query=Ramhouse+Kekere+Sapporo"]
+],route:"札幌 JR → 小樽站 → CAFE' BAAL → 堺町通 → 音樂盒堂 → 小樽運河 → 小樽站 → 札幌",tips:["小樽站到運河步行約 10 分鐘左右；雪地請放慢速度。","小樽站、運河、堺町通可步行串連，不必為了短距離特地等巴士。","商店營業時間各有不同，先逛想買的店，再留傍晚給運河。","Ramhouse Kekere 是回札幌後的晚餐，不在小樽。"]},
+{title:"羊之丘玩雪・藻岩山夜景",subtitle:"白天玩雪，傍晚前往藻岩山，從日落一路看到札幌燈海。",tags:["Snow Park","戶外活動","夜景"],stops:[
+["上午","札幌 → 羊之丘展望台","搭地下鐵／巴士前往；出發前查當日接駁與巴士班次。","https://www.google.com/maps/search/?api=1&query=Sapporo+Hitsujigaoka+Observation+Hill"],
+["中午","羊之丘展望台","克拉克博士雕像、雪原拍照、園區用餐。"],
+["下午","羊之丘 Snow Park","雪胎滑行、玩雪等活動；活動日期、開放設施與器材供應依當季公告。"],
+["15:00左右","返回札幌市區","預留交通時間與休息時間。"],
+["日落前","藻岩山纜車山麓站","可搭市電至「ロープウェイ入口」附近，再轉接駁巴士；確認當日接駁運行。","https://www.google.com/maps/search/?api=1&query=Mt+Moiwa+Ropeway+Sanroku+Station"],
+["傍晚／晚上","藻岩山展望台","搭纜車及迷你纜車上山，欣賞札幌夜景。","https://www.google.com/maps/search/?api=1&query=Mount+Moiwa+Observation+Deck"]
+],route:"住宿 → 羊之丘展望台 → 札幌市區 → 市電／接駁巴士 → 藻岩山纜車 → 住宿",tips:["羊之丘與藻岩山分處不同方向，交通時間要留寬鬆，六人可比較計程車分車與大眾交通。","藻岩山纜車可能因強風或惡劣天候停駛，出發前確認官方公告。","山頂風大、體感溫度低，準備防風外套、帽子、手套。","如果當天風雪很大，優先保留室內休息或改期，不要硬趕。"]},
+{title:"北海道大學・札幌市區自由購物",subtitle:"把第五天留給校園雪景、室內景點和伴手禮採買。",tags:["校園拍照","室內景點","購物日"],stops:[
+["上午","北海道大學校園","拍雪景、歷史建築與林蔭大道；校園很大，挑重點區域散步即可。","https://www.google.com/maps/search/?api=1&query=Hokkaido+University+Sapporo"],
+["上午","北海道大學綜合博物館（可選）","室內參觀，開放日與年末年初休館資訊需事先確認。","https://www.google.com/maps/search/?api=1&query=Hokkaido+University+Museum"],
+["中午","北大周邊午餐","校園周邊或札幌站一帶用餐。"],
+["下午","札幌站商圈","百貨、服飾、伴手禮；依購物需求彈性安排。","https://www.google.com/maps/search/?api=1&query=Sapporo+Station+shopping"],
+["下午（選配）","白色戀人公園","若想增加景點，可用 2–3 小時替換部分購物時間。","https://www.google.com/maps/search/?api=1&query=Shiroi+Koibito+Park"],
+["傍晚","札幌地下街","Pole Town、Aurora Town 避寒購物。","https://www.google.com/maps/search/?api=1&query=Sapporo+Aurora+Town+Pole+Town"],
+["晚上","晚餐・整理行李","確認第六天航班、機場交通與退房時間。"]
+],route:"住宿 → 北海道大學 → 札幌站商圈 →（可選白色戀人公園）→ 大通／薄野地下街 → 住宿",tips:["北海道大學完整校園範圍很大，冬天建議只走主要拍照區。","博物館可能在年末年初休館，請按實際旅行日期確認。","白色戀人公園是選配，不必硬塞進同一天。","第五天保留自由購物時間，方便六人各自採買。"]},
+{title:"退房・前往新千歲機場",subtitle:"留足時間，從容辦理登機與最後採買。",tags:["退房","機場交通","返家"],stops:[
+["早上","早餐與整理行李","檢查護照、手機、充電器、伴手禮及房間物品。"],
+["退房","Minn 札幌大通 西14","依住宿規定辦理退房。"],
+["交通","札幌 → 新千歲機場","可由札幌站搭 JR 快速 Airport；從住宿先搭地下鐵／計程車到札幌站。","https://www.google.com/maps/search/?api=1&query=JR+Sapporo+Station+to+New+Chitose+Airport"],
+["機場","新千歲機場","預留報到、托運、安檢及購物時間。"],
+["返家","搭機返回台灣","依實際航班時間調整出發時間。"]
+],route:"住宿 → 札幌站 → JR 快速 Airport → 新千歲機場 → 台灣",tips:["目前尚未提供回程航班時間，請依航空公司建議提早抵達機場。","六人若帶大型行李，預留電梯、購票與月台移動時間。","機場購物很容易花時間，先完成報到與托運。"]}
+];
+
+function mapUrl(q){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q)}
+function renderDay(i){
+ const d=days[i];
+ document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',Number(b.dataset.day)===i));
+ const stops=d.stops.map((s,n)=>`<div class="stop"><div class="time">${s[0]}</div><div class="rail"><span class="dot"></span></div><div class="stop-content"><h3>${s[1]}</h3><p>${s[2]}</p>${s[3]?`<div class="links"><a class="text-link" target="_blank" rel="noopener" href="${s[3]}">查看地圖／交通 ↗</a></div>`:''}<label class="checkline"><input type="checkbox" class="done-stop" data-key="d${i}s${n}"> 完成這個行程</label></div></div>`).join('');
+ document.getElementById('dayPanel').innerHTML=`
+ <div class="panel day-head"><div class="day-title-row"><div><div class="day-number">DAY 0${i+1} / HOKKAIDO WINTER</div><h2>${d.title}</h2><p>${d.subtitle}</p></div><button class="btn ghost" onclick="copyText('${d.title}｜${d.route.replace(/'/g,"")}')">複製今日路線</button></div><div class="day-tags">${d.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>
+ <div class="itinerary"><div class="panel timeline">${stops}</div><div class="side"><div class="panel side-card"><div class="eyebrow">TODAY'S ROUTE</div><h3>今日移動順序</h3><div class="route">${d.route}</div><button class="btn secondary" style="margin-top:10px" onclick="copyText('${d.route.replace(/'/g,"")}')">複製路線文字</button></div><div class="panel side-card"><div class="eyebrow">REMINDERS</div><h3>今日小提醒</h3><ul>${d.tips.map(t=>`<li>${t}</li>`).join('')}</ul></div></div></div>`;
+ document.querySelectorAll('.done-stop').forEach(el=>{const k=el.dataset.key;el.checked=localStorage.getItem(k)==='1';el.addEventListener('change',()=>localStorage.setItem(k,el.checked?'1':'0'))});
+}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>renderDay(Number(b.dataset.day))));
+function copyText(t){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>alert('已複製！')).catch(()=>prompt('請手動複製：',t));}else{prompt('請手動複製：',t)}}
+const packing=document.querySelectorAll('#packingList input');
+packing.forEach((el,i)=>{el.checked=localStorage.getItem('pack'+i)==='1';el.addEventListener('change',()=>{localStorage.setItem('pack'+i,el.checked?'1':'0');updatePack()})});
+function updatePack(){let n=[...packing].filter(x=>x.checked).length;document.getElementById('packingProgress').style.width=(n/packing.length*100)+'%';document.getElementById('packingCount').textContent=`${n} / ${packing.length} 已完成`}
+updatePack();
+const budgetIds=['food','transport','tickets','shopping'];
+function updateBudget(){let sum=budgetIds.reduce((a,id)=>a+(Number(document.getElementById(id).value)||0),0);document.getElementById('budgetTotal').textContent='NT$ '+sum.toLocaleString('zh-TW');budgetIds.forEach(id=>localStorage.setItem('budget-'+id,document.getElementById(id).value))}
+budgetIds.forEach(id=>{let v=localStorage.getItem('budget-'+id);if(v!==null)document.getElementById(id).value=v;document.getElementById(id).addEventListener('input',updateBudget)});
+updateBudget();
+const memo=document.getElementById('memo');memo.value=localStorage.getItem('tripMemo')||'';memo.addEventListener('input',()=>{localStorage.setItem('tripMemo',memo.value);document.getElementById('memoStatus').textContent='已自動儲存 ✓'});
+renderDay(0);
+</script>
+</body>
+</html>
