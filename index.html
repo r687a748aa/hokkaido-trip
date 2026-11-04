@@ -140,6 +140,13 @@ h3{font-size:17px;margin:0 0 7px}
   .stop-with-image{padding:12px;}
 }
 
+
+.detail-lines{display:flex;flex-direction:column;gap:5px;margin-top:7px;color:var(--muted);font-size:13px;line-height:1.65}
+.detail-line{display:block}
+.stop-content .links{margin-top:10px}
+.text-link{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:800}
+@media(max-width:620px){.detail-lines{font-size:14px;gap:5px;line-height:1.65}}
+
 </style>
 </head>
 <body>
@@ -211,7 +218,11 @@ function renderDay(i){
  const d=days[i];
  window.__activeDay=i;
  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',Number(b.dataset.day)===i));
- const stops=d.stops.map((s,n)=>`<div class="stop stop-with-image"><div class="stop-content"><h3>${s[1]}</h3><p>${s[2]}</p>${s[3]?`<div class="links"><a class="text-link" target="_blank" rel="noopener" href="${s[3]}">${i===0?"地圖 ↗":"查看地圖／交通 ↗"}</a></div>`:''}</div><img class="stop-photo" src="${stopImages[i][n]||dayImages[i]}" alt="${s[1]}"></div>`).join('');
+ const stops=d.stops.map((s,n)=>{
+  const detailLines=String(s[2]||"").split(/[；;。\\n]+/).map(t=>t.trim()).filter(Boolean);
+  const detailHtml=detailLines.length?`<div class="detail-lines">${detailLines.map(t=>`<div class="detail-line">${t}</div>`).join('')}</div>`:'';
+  return `<div class="stop stop-with-image"><div class="stop-content"><h3>${s[1]}</h3>${detailHtml}${s[3]?`<div class="links"><a class="text-link" target="_blank" rel="noopener" href="${s[3]}">🗺️ 地圖</a></div>`:''}</div><img class="stop-photo" src="${stopImages[i][n]||dayImages[i]}" alt="${s[1]}"></div>`;
+ }).join('');
  document.getElementById('dayPanel').innerHTML=`
  <div class="itinerary"><div class="panel timeline">${stops}</div></div>`;
 
